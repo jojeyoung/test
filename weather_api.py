@@ -1,14 +1,11 @@
-from weather_model import WeatherModel
 from bs4 import BeautifulSoup
 import requests
 
 
-def weather_title(today="날씨"):
-    url = f"https://search.naver.com/search.naver?where=nexearch&sm=tab_jum&query={today}"
-
+def weather_title():
+    url = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EB%82%A0%EC%94%A8"
     response = requests.get(url)
 
     soup = BeautifulSoup(response.text, 'html.parser')
-    target = soup.select_one('.todaytemp')
-    print(target.text)
-    return target.text
+    temp = soup.select_one('.todaytemp')
+    return temp.text
